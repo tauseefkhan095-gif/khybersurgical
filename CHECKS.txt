@@ -1,0 +1,21 @@
+KS FINAL DEPLOY — VERIFIED PACKAGE
+Date: 4 October 2026
+
+PASS: index.html and vercel.json exist at the package root
+PASS: No build manifests, workflows or old output/source folders
+PASS: Vercel config selects Other; empty install/build; output is dot
+PASS: JavaScript parses successfully
+PASS: 46 real HTML pages included
+PASS: All 1720 internal link, CSS, JavaScript and image references resolve
+PASS: Every page has one main heading and valid public configuration
+PASS: English/Arabic/Persian/Turkish documents have correct language and direction
+PASS: Email is disabled on every page; no sending credentials included
+PASS: All seven WebP product/hero assets decode
+PASS: All 46 HTML files serve HTTP 200 via their directory URLs on local static server
+PASS: All assets serve intact over local HTTP
+PASS: Local unknown route returns branded 404 content
+
+Verification scope: file inventory, JavaScript syntax, HTML metadata/config, local link targets, WebP decoding, and a local static HTTP server using the supplied security headers.
+Interactive browser navigation could not be retested in this environment because Chromium navigation was blocked by an administrator policy. No claim of a new end-to-end browser test is made.
+Vercel configuration fields were checked against the official documentation. The online JSON schema could not be fetched in this environment.
+This package has NOT been deployed into your live Vercel account. Root Directory, production branch, repo linkage and domain settings require the dashboard check in README.md. Email is not connected.
