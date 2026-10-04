@@ -1,0 +1,367 @@
+{
+  "meta": {
+    "site": "KS Medical Supplies",
+    "description": "Explore medical consumables from KS. Browse IV infusion sets, cannulas, syringes, transfusion sets, gloves and measured-volume sets, and send a product enquiry."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About KS",
+    "contact": "Contact",
+    "enquire": "Make an enquiry",
+    "language": "Select language",
+    "menu": "Open menu",
+    "close": "Close menu",
+    "skip": "Skip to content"
+  },
+  "common": {
+    "eyebrow": "Medical essentials. Human connections.",
+    "topNote": "For healthcare businesses",
+    "view": "View product",
+    "allProducts": "Explore all products",
+    "enquire": "Enquire about this product",
+    "learn": "Get to know KS",
+    "back": "Back to products",
+    "illustration": "Temporary AI-generated product imagery. Actual KS products and specifications may differ.",
+    "notCheckout": "Product information and enquiries. No online checkout.",
+    "optional": "optional",
+    "required": "Required fields are marked with *.",
+    "privacy": "Privacy notice",
+    "rights": "KS. All rights reserved.",
+    "footerDesc": "Medical essentials, made easier to explore. A clear catalogue and a direct conversation with our team.",
+    "footerProducts": "Our catalogue",
+    "footerCompany": "Get in touch",
+    "footerLanguages": "Choose your language",
+    "footerNote": "For professional procurement. Product specifications, availability and market eligibility require confirmation.",
+    "loading": "Loading…",
+    "close": "Close",
+    "home": "Back to home",
+    "category": "Category",
+    "reference": "Catalogue reference",
+    "supply": "Supply information",
+    "confirm": "Confirmed on enquiry",
+    "general": "General enquiry",
+    "other": "Other",
+    "preview": "Preview mode",
+    "six": "6 product categories",
+    "more": "Find out more"
+  },
+  "hero": {
+    "tag": "THE EVERYDAY ESSENTIALS OF CARE",
+    "line1": "Small essentials.",
+    "line2": "A bigger purpose.",
+    "desc": "Medical supplies for the people who care for people. Explore our product range and tell us what your organisation needs.",
+    "cta": "Explore products",
+    "secondary": "Talk to our team",
+    "audience": "Hospitals",
+    "audience2": "Clinics",
+    "audience3": "Distributors",
+    "focus": "PRODUCT SPOTLIGHT",
+    "focusName": "IV therapy essentials",
+    "cardTitle": "Your next supply conversation",
+    "cardDesc": "Starts with the right essentials.",
+    "artLabel": "AI-generated studio-style image of IV tubing, a syringe and a cannula"
+  },
+  "benefits": [
+    {
+      "title": "A focused product range",
+      "text": "Everyday consumables, in one clear catalogue."
+    },
+    {
+      "title": "Straight to the right conversation",
+      "text": "Share your needs directly with our team."
+    },
+    {
+      "title": "Your language. Your way.",
+      "text": "Browse in English, Arabic, Persian or Turkish."
+    }
+  ],
+  "home": {
+    "rangeTag": "THE KS CATALOGUE",
+    "rangeTitle": "Essentials for everyday care.",
+    "rangeDesc": "Find your product category. We’ll help with the next step.",
+    "aboutTag": "A MORE PERSONAL APPROACH",
+    "aboutTitle": "Behind every essential,\nthere’s a conversation.",
+    "aboutDesc": "Sourcing medical supplies starts with understanding your requirements. KS brings product discovery and direct enquiries together, without the complexity of online checkout.",
+    "aboutNote": "Clear information. Thoughtful conversations.",
+    "processTag": "FROM BROWSING TO ENQUIRING",
+    "processTitle": "Three simple steps.",
+    "steps": [
+      {
+        "title": "Explore the range",
+        "text": "Find the product category that fits your procurement needs."
+      },
+      {
+        "title": "Tell us what you need",
+        "text": "Share quantities, specifications and your destination."
+      },
+      {
+        "title": "Discuss the details",
+        "text": "Our team can confirm options, documentation and next steps."
+      }
+    ],
+    "ctaTitle": "Let’s talk about\nyour requirements.",
+    "ctaText": "One product or a broader requirement. Start with a conversation.",
+    "ctaButton": "Send an enquiry"
+  },
+  "catalog": {
+    "tag": "OUR PRODUCT RANGE",
+    "title": "The essentials, all in one place.",
+    "desc": "Explore six medical consumable categories. For specifications, quantities and availability, speak with our team.",
+    "search": "Search products",
+    "searchPlaceholder": "Search by product name…",
+    "filter": "Filter by category",
+    "all": "All products",
+    "infusion": "Infusion & transfusion",
+    "access": "Access & injection",
+    "protection": "Protective essentials",
+    "count": "products",
+    "empty": "No matching products",
+    "emptyDesc": "Try a different term or explore all categories.",
+    "reset": "Clear filters",
+    "note": "Product illustrations are representative. Detailed specifications and supporting documents are confirmed for each enquiry."
+  },
+  "products": {
+    "iv-infusion-sets": {
+      "name": "IV infusion sets",
+      "short": "Fluid administration essentials for professional healthcare settings.",
+      "description": "Explore IV infusion sets for your organisation’s procurement requirements. Tell us the intended configuration and quantities so the team can discuss suitable supply options.",
+      "focus": [
+        "Set configuration and tubing requirements",
+        "Connector type and flow-control requirements",
+        "Packaging, documentation and order quantity"
+      ]
+    },
+    "iv-cannulas": {
+      "name": "IV cannulas",
+      "short": "Access devices for your clinical consumables catalogue.",
+      "description": "Browse the IV cannula category and share your required sizes, configurations and quantities. Specific device features and supporting documentation need to be confirmed before procurement.",
+      "focus": [
+        "Gauge and size requirements",
+        "Port, wing and safety-feature preferences",
+        "Pack quantities and product documentation"
+      ]
+    },
+    "syringes": {
+      "name": "Syringes",
+      "short": "An everyday essential for healthcare procurement.",
+      "description": "Discuss syringe requirements for your organisation. Share the capacities, connection types and quantities you need to help the team identify relevant product options.",
+      "focus": [
+        "Required capacity and graduation format",
+        "Connection type and needle requirements",
+        "Packaging and order quantities"
+      ]
+    },
+    "blood-transfusion-sets": {
+      "name": "Blood transfusion sets",
+      "short": "Transfusion-set options for professional procurement.",
+      "description": "Enquire about blood transfusion sets and the configurations your organisation requires. Request product-specific specifications and documentation from the team.",
+      "focus": [
+        "Set configuration and filter requirements",
+        "Connector and tubing specifications",
+        "Packaging and supporting documents"
+      ]
+    },
+    "medical-gloves": {
+      "name": "Medical gloves",
+      "short": "Protective essentials for professional healthcare teams.",
+      "description": "Share your medical glove requirements, including material, size, intended setting and quantity. The team will need to confirm the exact glove type and documentation for your request.",
+      "focus": [
+        "Material and latex-related requirements",
+        "Sizes, intended use and sterile/non-sterile needs",
+        "Pack quantities and product documentation"
+      ]
+    },
+    "measured-volume-sets": {
+      "name": "Measured-volume sets",
+      "short": "Volume-measurement infusion sets for your catalogue.",
+      "description": "Enquire about measured-volume infusion sets and share your specification requirements. Capacity, configuration and product documentation must be confirmed for the selected model.",
+      "focus": [
+        "Chamber capacity and graduation requirements",
+        "Set configuration and connector specifications",
+        "Packaging and order quantities"
+      ]
+    }
+  },
+  "detail": {
+    "tag": "PRODUCT INFORMATION",
+    "overview": "Product overview",
+    "discuss": "What to include in your enquiry",
+    "specTitle": "Let’s confirm the specifics.",
+    "specDesc": "Sizes, materials, packaging, certifications and lead times vary by product. Ask our team for the details relevant to your requirements.",
+    "notice": "Information on this website is for product discovery, not clinical instructions. No certification, stock availability or suitability for a specific market is implied.",
+    "related": "Explore more essentials",
+    "helpTitle": "Not sure which details to share?",
+    "helpDesc": "Start with the product, approximate quantity and destination. We’ll take the conversation from there.",
+    "helpCta": "Ask our catalogue guide"
+  },
+  "about": {
+    "tag": "ABOUT KS",
+    "title": "Keeping medical sourcing\nhuman and simple.",
+    "intro": "KS is a product-discovery and enquiry destination for healthcare businesses. We keep the experience focused: understand the range, share your needs and discuss the details.",
+    "missionTitle": "Less complexity.\nMore clarity.",
+    "missionText": "We believe a useful catalogue should help you ask better questions. That’s why our product pages make it easy to start an informed conversation about specifications, quantities and documentation.",
+    "values": [
+      {
+        "title": "Clarity comes first",
+        "text": "Product categories are easy to explore, with a direct route to enquiries."
+      },
+      {
+        "title": "Details matter",
+        "text": "Product-specific specifications and documentation should be confirmed before procurement."
+      },
+      {
+        "title": "Built around your context",
+        "text": "Share your organisation, destination and language preference for a relevant conversation."
+      }
+    ],
+    "marketsTitle": "A conversation in your language.",
+    "marketsText": "This website supports English, Arabic, Persian and Turkish. Language availability does not confirm product registration or supply eligibility in any country.",
+    "brandNote": "KS · MEDICAL SUPPLIES"
+  },
+  "contact": {
+    "tag": "LET’S START A CONVERSATION",
+    "title": "What does your\norganisation need?",
+    "desc": "Tell us a little about your requirements. Product specifications, documentation or a broader supply enquiry—we’re here to help you start.",
+    "sideTitle": "A little detail goes a long way.",
+    "sideText": "Include the product, approximate quantity and destination. Please do not include patient information or sensitive medical details.",
+    "sideItems": [
+      "Product and specification enquiries",
+      "Bulk procurement requirements",
+      "Documentation and supply questions"
+    ],
+    "formTitle": "Send us your enquiry",
+    "name": "Full name",
+    "namePlaceholder": "Your name",
+    "email": "Email address",
+    "emailPlaceholder": "you@organisation.com",
+    "org": "Organisation",
+    "orgPlaceholder": "Hospital, clinic or company name",
+    "phone": "Phone number",
+    "country": "Destination country",
+    "chooseCountry": "Select a country",
+    "countries": {
+      "IN": "India",
+      "IQ": "Iraq",
+      "IR": "Iran",
+      "TR": "Türkiye",
+      "AE": "United Arab Emirates",
+      "OTHER": "Other"
+    },
+    "product": "Product of interest",
+    "quantity": "Approximate quantity",
+    "quantityPlaceholder": "e.g. 1,000 units",
+    "message": "Your enquiry",
+    "messagePlaceholder": "Tell us about the products, specifications and quantities you need…",
+    "consent": "I agree that KS may use these details to respond to my enquiry.",
+    "privacyLink": "Read the privacy notice",
+    "send": "Send enquiry",
+    "sending": "Sending your enquiry…",
+    "success": "Your enquiry was accepted for email delivery. Thank you for contacting KS.",
+    "error": "We couldn’t send your enquiry. Your details are still here—please try again.",
+    "invalid": "Please review the highlighted fields.",
+    "nameError": "Please enter your name (2–100 characters).",
+    "emailError": "Please enter a valid email address.",
+    "countryError": "Please select a destination country.",
+    "messageError": "Please enter between 10 and 4,000 characters.",
+    "consentError": "Please agree so we can respond to your enquiry.",
+    "previewNote": "This is a website preview. Email delivery is not connected yet.",
+    "previewResult": "Your enquiry has not been sent. The website owner needs to connect the email service before this form can deliver messages.",
+    "securityError": "Please complete the security check and try again.",
+    "rateError": "There have been too many attempts. Please try again later.",
+    "security": "Security verification",
+    "patientNote": "Please do not share patient data or confidential medical information.",
+    "receivedTitle": "Thank you for reaching out.",
+    "another": "Send another enquiry",
+    "emailNotSet": "Direct contact details will be added before launch."
+  },
+  "chat": {
+    "title": "KS catalogue guide",
+    "subtitle": "Automated help · Not live chat",
+    "open": "Open catalogue support",
+    "close": "Close catalogue support",
+    "intro": "Hello! I can help you explore our products or start an enquiry. What would you like to know?",
+    "hint": "Product guidance only. Please don’t share patient information.",
+    "placeholder": "Ask about products or enquiries…",
+    "inputLabel": "Your message to the catalogue guide",
+    "send": "Send message",
+    "chips": [
+      "Explore products",
+      "Bulk enquiries",
+      "Specifications & documents",
+      "Contact the team"
+    ],
+    "answers": {
+      "products": "Our catalogue includes IV infusion sets, IV cannulas, syringes, blood transfusion sets, medical gloves and measured-volume sets. Choose a category to learn more.",
+      "bulk": "For a bulk enquiry, share the product, quantity, specifications and destination country. Our team needs to confirm availability and supply options. There is no online checkout.",
+      "documents": "Specifications, materials, sizes and product documents need to be confirmed for the specific model. Ask the team for the documentation your organisation requires.",
+      "contact": "You can send a product or business enquiry using our contact form. This guide is automated and cannot connect you to a live agent.",
+      "shipping": "Delivery options, lead times and market eligibility are confirmed individually. Include your destination in your enquiry; this website does not guarantee supply to a particular country.",
+      "medical": "I provide catalogue information only, not medical advice or instructions for using devices. Please consult a qualified healthcare professional for clinical questions.",
+      "fallback": "I can help with product categories, bulk enquiries, documents or contacting KS. For a specific requirement, please send an enquiry to our team.",
+      "preview": "This preview’s contact form is not connected to email yet. No message will be delivered until the website owner configures the service."
+    },
+    "viewProducts": "Browse products",
+    "contactCta": "Go to enquiry form",
+    "productCta": "View product details",
+    "needHelp": "Need a hand?"
+  },
+  "faq": {
+    "title": "A few helpful answers.",
+    "items": [
+      {
+        "q": "Can I place an order on this website?",
+        "a": "No. This is an information and enquiry website. Browse a product, then use the contact form to discuss your requirements with KS."
+      },
+      {
+        "q": "Where can I find sizes and technical specifications?",
+        "a": "Send a product enquiry with the specifications you need. The team must confirm model-specific sizes, materials, packaging and documentation."
+      },
+      {
+        "q": "Can I enquire about bulk quantities?",
+        "a": "Yes. Include your estimated quantity, destination and relevant specifications. Availability, lead times and any commercial terms are confirmed separately."
+      },
+      {
+        "q": "Which languages can I use?",
+        "a": "The catalogue, enquiry form and automated guide are available in English, Arabic, Persian and Turkish. Use the language selector in the header."
+      }
+    ]
+  },
+  "privacyPage": {
+    "tag": "YOUR INFORMATION",
+    "title": "Privacy, in plain language.",
+    "intro": "This preview describes the intended enquiry workflow. Before launch, the website owner must publish the legal business identity, privacy contact and a specific retention schedule.",
+    "sections": [
+      {
+        "title": "Information you choose to share",
+        "text": "The enquiry form requests your name, email, destination, product interest and message, with optional organisation, phone and quantity. Please do not submit patient data or sensitive medical information."
+      },
+      {
+        "title": "How enquiries are handled",
+        "text": "When configured, the form sends your enquiry to KS’s designated inbox through Cloudflare Pages Functions and Resend. These service providers process the submitted information to deliver and protect the service. The preview does not send messages."
+      },
+      {
+        "title": "Browser storage and the catalogue guide",
+        "text": "Your language preference may be saved on your device. If you change languages while completing the form, a temporary draft is held in session storage and removed when restored or submitted. Chat messages stay in the current browser page and are not sent to an AI provider."
+      },
+      {
+        "title": "Fonts and security services",
+        "text": "The website requests typefaces from Google Fonts; your browser connects to Google to load them. When configured, Cloudflare Turnstile checks form submissions to reduce automated abuse. No marketing analytics or advertising trackers are included in this build."
+      },
+      {
+        "title": "Your choices",
+        "text": "Submitting an enquiry is optional. You can clear browser storage at any time. For questions about an enquiry already sent, use the contact form to request information or deletion. A dedicated privacy contact and legally appropriate retention and rights information must be added before public launch."
+      }
+    ]
+  },
+  "errorPage": {
+    "title": "This page isn’t in our catalogue.",
+    "text": "Let’s get you back to the essentials."
+  },
+  "imagery": {
+    "shortNote": "Photo-style placeholders · Final KS photography to follow",
+    "disclaimer": "Temporary AI-generated product imagery. Actual KS products and specifications may differ.",
+    "zoom": "View larger",
+    "close": "Close product image"
+  }
+}
