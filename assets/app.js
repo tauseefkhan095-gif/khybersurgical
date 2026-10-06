@@ -207,8 +207,45 @@
         const target = document.getElementById(`${key}-error`);
         if (target) target.textContent = text || '';
       }
+      function inquiryLabels(data) {
+        return {
+          country: t.contact.countries?.[data.country] || data.country,
+          product: products.find(product => product.id === data.product)?.name || t.common.general
+        };
+      }
+      function hiddenValue(name, value) {
+        let field = form.elements.namedItem(name);
+        if (!field) {
+          field = document.createElement('input');
+          field.type = 'hidden';
+          field.name = name;
+          form.append(field);
+        }
+        field.value = value;
+      }
+      function composeWhatsApp(data) {
+        const labels = inquiryLabels(data);
+        const message = [
+          'Khyber Surgical inquiry',
+          `${t.contact.name}: ${data.name}`,
+          `${t.contact.email}: ${data.email}`,
+          data.organisation && `${t.contact.org}: ${data.organisation}`,
+          data.phone && `${t.contact.phone}: ${data.phone}`,
+          `${t.contact.country}: ${labels.country}`,
+          `${t.contact.product}: ${labels.product}`,
+          data.quantity && `${t.contact.quantity}: ${data.quantity}`,
+          `${t.contact.message}:\n${data.message}`,
+          `Language: ${locale}`,
+          'Consent: confirmed'
+        ].filter(Boolean).join('\n');
+        const link = document.createElement('a');
+        link.href = `${config.business.whatsappBase}?text=${encodeURIComponent(message)}`;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.click();
+      }
       ['name','email','country','message','consent'].forEach(key => on(form.elements.namedItem(key),'input',()=>fieldError(key,'')));
-      if (config.contactEnabled && config.turnstileSiteKey && !window.__KS_PORTABLE) {
+      if (config.contactEnabled && config.contactProvider !== 'formsubmit' && config.turnstileSiteKey && !window.__KS_PORTABLE) {
         const mount = () => {
           if (signal.aborted || !window.turnstile || !$('#turnstile-widget')) return;
           turnstileId = window.turnstile.render('#turnstile-widget', {
@@ -255,8 +292,43 @@
           form.elements.namedItem(Object.keys(errors)[0]).focus();
           return;
         }
-        if (!config.contactEnabled || window.__KS_PORTABLE || location.protocol==='file:') {
+        if (!config.contactEnabled) {
+          if (config.business?.whatsappBase && t.contact.whatsappResult) {
+            saveFormDraft();
+            try {
+              composeWhatsApp(data);
+              showResult(t.contact.whatsappResult);
+            } catch { showResult(t.contact.error); }
+          } else showResult(t.contact.previewResult);
+          return;
+        }
+        if (window.__KS_PORTABLE || location.protocol==='file:') {
           showResult(t.contact.previewResult); return;
+        }
+        if (config.contactProvider === 'formsubmit') {
+          const labels = inquiryLabels(data);
+          const website = form.elements.namedItem('website');
+          const websiteDisabled = website?.disabled;
+          try {
+            if (!config.contactEndpoint || !config.contactEmail) throw new Error('Missing email configuration.');
+            hiddenValue('_subject', `Khyber Surgical inquiry — ${labels.product}`);
+            hiddenValue('_template', 'table');
+            hiddenValue('_honey', data.website);
+            hiddenValue('locale', locale);
+            hiddenValue('country_name', labels.country);
+            hiddenValue('product_name', labels.product);
+            saveFormDraft();
+            if (website) website.disabled = true;
+            form.action = config.contactEndpoint;
+            form.method = 'post';
+            // Native POST keeps FormSubmit's default CAPTCHA and provider result page.
+            // A dispatched form does not prove delivery, so keep the draft and show no local success.
+            HTMLFormElement.prototype.submit.call(form);
+          } catch {
+            if (website) website.disabled = websiteDisabled;
+            showResult(t.contact.error);
+          }
+          return;
         }
         if (!turnstileToken) { showResult(t.contact.securityError); return; }
         submit.disabled=true;

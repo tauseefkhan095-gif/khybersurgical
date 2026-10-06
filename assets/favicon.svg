@@ -1,1 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="#163d35"/><text x="32" y="43" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="30" fill="#e6efdb">KS</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="ks-logo-title ks-logo-desc"><title id="ks-logo-title">Khyber Surgical favicon</title><desc id="ks-logo-desc">A light surgical scalpel on a deep green background, with two enlarged grip cutouts for small sizes.</desc><rect width="64" height="64" rx="14" fill="#163D35"/><g transform="translate(4 4) scale(.7)"><g transform="rotate(-45 40 40)" fill="#F5F9F0">
+<path fill-rule="evenodd" d="M6 35h35a4 4 0 0 1 4 4v1h8v5h-8a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-6a4 4 0 0 1 4-4Zm7 3v8h4v-8Zm10 0v8h4v-8Z"/>
+<path d="M51 33h28c-3 10-12 18-28 16Z"/></g></g></svg>
