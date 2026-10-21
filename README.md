@@ -10,8 +10,8 @@ index.html          ← default entry (English; remembers the visitor's language
 robots.txt          ← allows search engines (built with INDEXABLE=true)
 vercel.json         ← Vercel settings + security headers (ignored by other hosts)
 .nojekyll           ← needed only by GitHub Pages; harmless elsewhere
-assets/             ← styles.css, app.js, favicon.svg, brand/ (logo files), images/ (18 product photos)
-en/ ar/ fa/ tr/     ← 23 pages per language: home, products, 18 product pages, about, contact, privacy
+assets/             ← styles.css, app.js, favicon.svg, brand/ (logos), images/ (18 photos), catalogue/ (PDF)
+en/ ar/ fa/ tr/     ← 25 pages per language: home, products, 18 product pages, about, team, FAQ, contact, privacy
 ```
 
 ## Hosting on your own domain
@@ -72,6 +72,12 @@ Edit the **source package** (the `…-SOURCE.zip`), not these built files:
 
 Then run `python3 scripts/package.py --out ../packages` (needs Node 22+ and Python 3) to get a new
 HOST zip, or `npm run build` for just the `dist/` folder. `npm test` runs the 30 checks.
+
+## Placeholders to replace
+
+Sections marked with an amber **Placeholder** badge hold sample content: trusted-by logos, licences &
+certificates, testimonials, team members, and the greyed social icons. Send the real material (scans,
+quotes with names, team names/roles/photos, profile URLs) and rebuild from the source.
 
 ## Not included / still to do
 

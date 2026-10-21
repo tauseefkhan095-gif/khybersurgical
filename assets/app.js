@@ -88,9 +88,29 @@
       mobileMenu.hidden = !open;
     });
     on(document, 'click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
-    on(window, 'resize', () => { if (window.innerWidth > 930) closeMenu(); });
+    on(window, 'resize', () => { if (window.innerWidth > 1080) closeMenu(); });
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // Back-to-top button: appears after one viewport of scrolling.
+    const topButton = $('[data-back-to-top]');
+    if (topButton) {
+      const toggleTop = () => { topButton.hidden = window.scrollY < window.innerHeight * 0.8; };
+      toggleTop(); on(window, 'scroll', toggleTop, { passive: true });
+      on(topButton, 'click', () => window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' }));
+    }
+    // Count-up stats: numbers are rendered server-side; the animation only replays them.
+    const counters = $$('[data-count]');
+    if (counters.length && 'IntersectionObserver' in window && !reducedMotion.matches) {
+      const fmt = new Intl.NumberFormat(locale);
+      const run = el => {
+        const target = Number(el.dataset.count); const start = performance.now(); const duration = 900;
+        const step = now => { const k = Math.min(1, (now - start) / duration); const eased = 1 - Math.pow(1 - k, 3); el.textContent = fmt.format(Math.round(target * eased)); if (k < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      };
+      const countObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { run(entry.target); countObserver.unobserve(entry.target); } }), { threshold: 0.5 });
+      counters.forEach(el => { el.textContent = fmt.format(0); countObserver.observe(el); });
+      signal.addEventListener('abort', () => countObserver.disconnect(), { once: true });
+    }
     if ('IntersectionObserver' in window && !reducedMotion.matches) {
       observer = new IntersectionObserver(entries => entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
@@ -189,25 +209,27 @@
       on($('[data-clear-filters]'),'click',()=>{ activeFilter='all'; search.value=''; applyFilters(); search.focus(); });
     }
 
-    const form = $('#contact-form');
     let turnstileId;
     let turnstileToken = '';
-    if (form) {
+    // One validated send path for both the contact page form and the quick-quote dialog.
+    function bindEnquiryForm(form, { main = false, prefix = '' } = {}) {
+      if (!form) return;
+      const field = key => form.elements.namedItem(key);
       const requestedProduct = currentUrl().searchParams.get('product');
-      if (products.some(p => p.id === requestedProduct)) $('#product').value = requestedProduct;
-      try {
+      if (main && products.some(p => p.id === requestedProduct)) field('product').value = requestedProduct;
+      if (main) try {
         const draft = JSON.parse(safeStorage.get(storageKey('ks-language-draft'), true) || 'null');
         if (draft && Date.now() - draft.savedAt < 30 * 60 * 1000) {
           ['name','email','organisation','phone','country','product','quantity','message'].forEach(key => {
             const field = form.elements.namedItem(key);
             if (field && typeof draft[key] === 'string') field.value = draft[key];
           });
-          $('#consent').checked = draft.consent === true;
+          field('consent').checked = draft.consent === true;
         }
       } catch { /* Ignore an invalid or expired draft. */ }
-      safeStorage.remove(storageKey('ks-language-draft'), true);
-      const result = $('#form-result');
-      const submit = $('.form-submit');
+      if (main) safeStorage.remove(storageKey('ks-language-draft'), true);
+      const result = form.querySelector('.form-result');
+      const submit = form.querySelector('.form-submit');
       submit.disabled = false; // Enabled only after JS attaches safe validation/submission handling.
       function showResult(text, success = false) {
         result.textContent = text;
@@ -219,11 +241,11 @@
       function fieldError(key, text) {
         const field = form.elements.namedItem(key);
         field?.setAttribute('aria-invalid', text ? 'true' : 'false');
-        const target = document.getElementById(`${key}-error`);
+        const target = document.getElementById(`${prefix}${key}-error`);
         if (target) target.textContent = text || '';
       }
       ['name','email','country','message','consent'].forEach(key => on(form.elements.namedItem(key),'input',()=>fieldError(key,'')));
-      if (config.contactEnabled && config.turnstileSiteKey && !window.__KS_PORTABLE) {
+      if (main && config.contactEnabled && config.turnstileSiteKey && !window.__KS_PORTABLE) {
         const mount = () => {
           if (signal.aborted || !window.turnstile || !$('#turnstile-widget')) return;
           turnstileId = window.turnstile.render('#turnstile-widget', {
@@ -256,7 +278,7 @@
           organisation:String(values.organisation||'').trim(),phone:String(values.phone||'').trim(),
           country:String(values.country||''),product:String(values.product||'general'),
           quantity:String(values.quantity||'').trim(),message:String(values.message||'').trim(),
-          consent:$('#consent').checked,website:String(values.website||''),locale,turnstileToken
+          consent:field('consent').checked,website:String(values.website||''),locale,turnstileToken
         };
         const errors = {};
         if (data.name.length < 2 || data.name.length > 100) errors.name=t.contact.nameError;
@@ -312,7 +334,7 @@
           }
           showResult(t.contact.success,true);
           form.reset();
-          safeStorage.remove(storageKey('ks-language-draft'),true);
+          if (main) safeStorage.remove(storageKey('ks-language-draft'),true);
         } catch(error) {
           if (!signal.aborted) { console.warn('Enquiry delivery error', error); showResult(error instanceof Error && error.message.startsWith(t.contact.error) ? error.message : error instanceof Error && [t.contact.rateError,t.contact.securityError,t.contact.previewResult].includes(error.message)?error.message:t.contact.error); }
         } finally {
@@ -323,6 +345,40 @@
           }
         }
       });
+    }
+    bindEnquiryForm($('#contact-form'), { main: true });
+    bindEnquiryForm($('#quote-form'), { prefix: 'q-' });
+
+    // Quick-quote dialog: opened from any "Request a quote" button that carries a product id.
+    const quoteDialog = $('#quote-dialog');
+    if (quoteDialog && typeof quoteDialog.showModal === 'function') {
+      let quoteOpener = null;
+      const openQuote = (productId, opener) => {
+        quoteOpener = opener;
+        const select = $('#q-product');
+        if (select && products.some(p => p.id === productId)) select.value = productId;
+        const wa = quoteDialog.querySelector('[data-quote-whatsapp]');
+        if (wa) { const base = wa.getAttribute('href').split('?')[0]; const name = products.find(p => p.id === productId)?.name; wa.setAttribute('href', name ? `${base}?text=${encodeURIComponent(`${t.common.enquire}: ${name}`)}` : base); }
+        quoteDialog.showModal();
+        $('#q-name')?.focus({ preventScroll: true });
+      };
+      $$('[data-quick-quote]').forEach(button => on(button, 'click', event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault(); openQuote(button.dataset.quickQuote, button);
+      }));
+      on(quoteDialog.querySelector('[data-quote-close]'), 'click', () => quoteDialog.close());
+      on(quoteDialog, 'click', event => { if (event.target === quoteDialog) quoteDialog.close(); });
+      on(quoteDialog, 'close', () => quoteOpener?.isConnected && quoteOpener.focus({ preventScroll: true }));
+    }
+    // Certificate placeholders open a viewer dialog; real documents will replace the placeholder body.
+    const certDialog = $('.cert-dialog');
+    if (certDialog && typeof certDialog.showModal === 'function') {
+      $$('[data-cert]').forEach(card => on(card, 'click', () => {
+        $('#cert-dialog-title').textContent = card.querySelector('.cert-title')?.textContent || '';
+        certDialog.showModal();
+      }));
+      on(certDialog.querySelector('[data-cert-close]'), 'click', () => certDialog.close());
+      on(certDialog, 'click', event => { if (event.target === certDialog) certDialog.close(); });
     }
 
     const panel = $('#chat-panel');
