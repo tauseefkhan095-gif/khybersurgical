@@ -289,7 +289,7 @@
             body = {
               _subject:`Khyber Surgical enquiry: ${productName} — ${data.name}`,
               _template:'table', _captcha:'false', _replyto:data.email,
-              Name:data.name, Email:data.email, Organisation:data.organisation||'-', Phone:data.phone||'-',
+              name:data.name, email:data.email, Organisation:data.organisation||'-', Phone:data.phone||'-',
               'Destination country':countryName, Product:productName, 'Product ID':data.product,
               'Approximate quantity':data.quantity||'-', Enquiry:data.message, Language:locale,
               'Submitted from':window.__KS_PORTABLE?'standalone preview':location.href
@@ -302,16 +302,19 @@
           const payload = await response.json().catch(()=>({}));
           const accepted = formsubmit ? (response.ok && (payload.success===true||payload.success==='true')) : (response.ok && payload.ok===true && Boolean(payload.id));
           if (!accepted) {
+            // Surface the provider's own explanation (e.g. FormSubmit's activation notice) so the problem is visible, not hidden.
+            const detail = formsubmit && typeof payload.message==='string' && payload.message.trim() ? ` (${payload.message.trim()})` : '';
             const message = response.status===429?t.contact.rateError:
               payload.code==='security_check'?t.contact.securityError:
-              payload.code==='not_configured'?t.contact.previewResult:t.contact.error;
+              payload.code==='not_configured'?t.contact.previewResult:t.contact.error+detail;
+            console.warn('Enquiry delivery failed', response.status, payload);
             throw new Error(message);
           }
           showResult(t.contact.success,true);
           form.reset();
           safeStorage.remove(storageKey('ks-language-draft'),true);
         } catch(error) {
-          if (!signal.aborted) showResult(error instanceof Error && [t.contact.rateError,t.contact.securityError,t.contact.previewResult].includes(error.message)?error.message:t.contact.error);
+          if (!signal.aborted) { console.warn('Enquiry delivery error', error); showResult(error instanceof Error && error.message.startsWith(t.contact.error) ? error.message : error instanceof Error && [t.contact.rateError,t.contact.securityError,t.contact.previewResult].includes(error.message)?error.message:t.contact.error); }
         } finally {
           if (!signal.aborted) {
             submit.disabled=false;submit.querySelector('span').textContent=t.contact.send;
